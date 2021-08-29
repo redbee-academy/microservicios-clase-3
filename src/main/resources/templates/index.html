@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>redbee Academy - Todo list</title>
+
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+    <link th:href="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}" rel="stylesheet" type="text/css" media="screen"/>
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="screen"/>
+    <link rel="stylesheet" th:href="@{/css/todo-list.css}">
+</head>
+
+<body>
+    <div class="row d-flex justify-content-center container">
+        <div class="col-md-8">
+            <div class="card-hover-shadow-2x mb-3 card">
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i
+                            class="fa fa-tasks"></i>&nbsp;Task Lists
+                        <button class="btn btn-primary"><a th:href="@{/todo-list/nueva}">Nueva Lista</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
