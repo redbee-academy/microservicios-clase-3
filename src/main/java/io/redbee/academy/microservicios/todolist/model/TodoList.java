@@ -6,26 +6,26 @@ import java.util.UUID;
 
 public class TodoList {
 
-    private UUID uuid;
+    private String id;
     private List<TodoItem> items;
 
 
     public TodoList() {
-        this.uuid = UUID.randomUUID();
+        this.id = UUID.randomUUID().toString();
         this.items = new ArrayList();
     }
 
-    public TodoList(UUID uuid, List<TodoItem> items) {
-        this.uuid = uuid;
+    public TodoList(String uuid, List<TodoItem> items) {
+        this.id = uuid;
         this.items = items;
     }
 
     public TodoList(TodoList todoList) {
-        this(todoList.getUuid(), todoList.getItems());
+        this(todoList.getId(), todoList.getItems());
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public String getId() {
+        return id;
     }
 
 

@@ -5,19 +5,18 @@ import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @Repository
 public class TodoListRepository {
 
-    private Map<UUID, TodoList> data;
+    private Map<String, TodoList> data;
 
     TodoListRepository() {
         this.data = new HashMap<>();
     }
 
-    public TodoList getTodoList(UUID uuid) {
-        TodoList todoList = data.get(uuid);
+    public TodoList getTodoList(String id) {
+        TodoList todoList = data.get(id);
         if (todoList != null) {
             todoList = new TodoList(todoList);
         }
@@ -25,6 +24,6 @@ public class TodoListRepository {
     }
 
     public void saveTodoList(TodoList todoList) {
-        data.put(todoList.getUuid(), new TodoList(todoList));
+        data.put(todoList.getId(), new TodoList(todoList));
     }
 }

@@ -1,12 +1,12 @@
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 0.88rem;
+    font-size: 1.22rem;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
     text-align: left;
-    background-color: #6200EA
+    background-color: #c90303;
 }
 
 i {
@@ -38,10 +38,6 @@ i {
     background-color: #fff
 }
 
-.widget-subheading {
-    color: #858a8e;
-    font-size: 10px
-}
 
 .card-header.card-header-tab .card-header-title {
     display: flex;
@@ -148,12 +144,17 @@ i {
     border-color: #3ac47d
 }
 
-.btn-outline-success:hover {
-    color: #fff;
-    background-color: #3ac47d;
-    border-color: #3ac47d
+.btn-outline-danger {
+    color: #f50e0e;
+    border-color: #f50e0e
 }
 
+
+.btn-outline-danger:hover {
+    color: #fff;
+    background-color: #f50e0e;
+    border-color: #f50e0e
+}
 .btn-primary {
     color: #fff;
     background-color: #3f6ad8;

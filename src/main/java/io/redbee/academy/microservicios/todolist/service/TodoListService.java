@@ -5,14 +5,12 @@ import io.redbee.academy.microservicios.todolist.model.TodoItem;
 import io.redbee.academy.microservicios.todolist.repository.TodoListRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 public class TodoListService {
 
-    TodoListRepository repository;
+    private TodoListRepository repository;
 
-    TodoListService(TodoListRepository repository) {
+    public TodoListService(TodoListRepository repository) {
         this.repository = repository;
     }
 
@@ -23,13 +21,15 @@ public class TodoListService {
     }
 
 
-    public TodoList buscarTodoList(UUID uuid) {
+    public TodoList buscarTodoList(String uuid) {
         return this.repository.getTodoList(uuid);
     }
 
-    public void agregarItem(UUID todoListId, TodoItem item) {
-        TodoList todoList = this.repository.getTodoList(todoListId);
-        todoList.addItem(item);
+    public TodoList agregarItem(String listId, String descripcion) {
+        TodoList todoList = this.repository.getTodoList(listId);
+        TodoItem todoItem = new TodoItem(descripcion);
+        todoList.addItem(todoItem);
         this.repository.saveTodoList(todoList);
+        return todoList;
     }
 }

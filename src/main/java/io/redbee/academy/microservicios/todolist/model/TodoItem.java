@@ -5,26 +5,26 @@ import java.util.UUID;
 
 public class TodoItem {
 
-    private UUID uuid;
-    private String detalle;
+    private String id;
+    private String descripcion;
     private Boolean finalizada;
 
-    TodoItem(String detalle) {
-        this.uuid = UUID.randomUUID();
-        this.detalle = detalle;
+    public TodoItem(String descripcion) {
+        this.id = UUID.randomUUID().toString();
+        this.descripcion = descripcion;
         this.finalizada = false;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public String getId() {
+        return id;
     }
 
-    public String getDetalle() {
-        return  detalle;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Boolean isFinalizada() {
@@ -40,11 +40,11 @@ public class TodoItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TodoItem todoItem = (TodoItem) o;
-        return uuid.equals(todoItem.uuid);
+        return id.equals(todoItem.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid);
+        return Objects.hash(id);
     }
 }
