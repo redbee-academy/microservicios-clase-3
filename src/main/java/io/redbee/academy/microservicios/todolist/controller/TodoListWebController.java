@@ -20,7 +20,7 @@ public class TodoListWebController {
 
     @GetMapping(value = {"/", "/todo-list/"})
     public String nuevaTodoList(Model model) {
-        TodoList todoList = service.createTodoList();
+        TodoList todoList = service.nuevaTodoList();
         model.addAttribute("todoList", todoList);
         return "todo-list";
     }

@@ -17,15 +17,15 @@ public class TodoListService {
         this.repository = repository;
     }
 
-    public TodoList createTodoList() {
+    public TodoList nuevaTodoList() {
         TodoList nuevaTodoList = new TodoList();
         this.repository.saveTodoList(nuevaTodoList);
         return nuevaTodoList;
     }
 
 
-    public TodoList buscarTodoList(String uuid) {
-        return this.repository.getTodoList(uuid);
+    public TodoList buscarLista(String listId) {
+        return this.repository.getTodoList(listId);
     }
 
     public TodoList agregarItem(String listId, String descripcion) {
@@ -44,6 +44,18 @@ public class TodoListService {
                         item.cambiarFinalizada();
                     return item;
                 })
+                .collect(Collectors.toList());
+
+        todoList = new TodoList(todoList.getId(),todoItems);
+        this.repository.saveTodoList(todoList);
+
+        return todoList;
+    }
+
+    public TodoList eliminarItem(String listId, String itemId) {
+        TodoList todoList = this.repository.getTodoList(listId);
+        List<TodoItem> todoItems = todoList.getItems().stream()
+                .filter(item -> item.getId().equals(itemId))
                 .collect(Collectors.toList());
 
         todoList = new TodoList(todoList.getId(),todoItems);
