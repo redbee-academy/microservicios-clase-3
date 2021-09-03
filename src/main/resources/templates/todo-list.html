@@ -40,15 +40,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="widget-content-right">
-                                                    <form action="#" th:object="${itemAccion}" th:action="@{/todo-list/{listId}/items/{itemId}/cambiarEstado(listId=${todoList.id},itemId=${item.id})}" method="POST" th:method="POST">
+                                                    <form action="#" th:action="@{/todo-list/cambiarEstado}" method="POST" th:method="POST">
                                                         <input type="text" hidden th:value="${todoList.id}" th:name="listId" >
                                                         <input type="text" hidden th:value="${item.id}" th:name="itemId" >
-                                                    <button type="submit" class="border-0 btn-transition btn btn-outline-success"><i
-                                                            class="fa fa-check"></i></button>
-
+                                                        <button type="submit" class="border-0 btn-transition btn btn-outline-success">
+                                                            <i class="fa fa-check"></i></button>
                                                     </form>
-                                                    <button class="border-0 btn-transition btn btn-outline-danger"><i
-                                                            class="fa fa-trash"></i></button>
+                                                    <form action="#" th:action="@{/todo-list/eliminar}" method="POST" th:method="POST">
+                                                        <input type="text" hidden th:value="${todoList.id}" th:name="listId" >
+                                                        <input type="text" hidden th:value="${item.id}" th:name="itemId" >
+                                                        <button class="border-0 btn-transition btn btn-outline-danger"><i
+                                                                class="fa fa-trash"></i></button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,12 +152,12 @@
                 <div class="d-block text-right card-footer">
                     <div class="widget-content p-0">
                         <div class="widget-content-wrapper">
-                            <form action="#" th:action="@{/todo-list/{id}/items(id=${todoList.id})}" th:object="${nuevoItem}" method="POST" th:method="POST">
+                            <form action="#" th:action="@{/todo-list/agregarItem}" method="POST" th:method="POST">
                                 <div class="widget-content-left mr-2">
-                                    <input  type="text" hidden th:field="${nuevoItem.listId}" th:value="${todoList.id}"></input>
+                                    <input  type="text" hidden th:name="listId" th:value="${todoList.id}"></input>
                                 </div>
                                 <div class="widget-content-left flex2">
-                                    <input  type="text" placeholder="Nueva tarea" th:field="${nuevoItem.detalle}"></input>
+                                    <input  type="text" placeholder="Nueva tarea" th:name="detalle"></input>
                                     <input type="submit" class="btn btn-primary" value="Add Task"></input>
                                 </div>
                             </form>
