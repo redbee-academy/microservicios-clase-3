@@ -170,3 +170,8 @@ i {
 .card-footer {
     background-color: #fff
 }
+
+.tarea-finalizada {
+    text-decoration:line-through;
+    color: green;
+}

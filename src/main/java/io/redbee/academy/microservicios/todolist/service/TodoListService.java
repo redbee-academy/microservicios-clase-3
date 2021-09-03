@@ -5,6 +5,9 @@ import io.redbee.academy.microservicios.todolist.model.TodoItem;
 import io.redbee.academy.microservicios.todolist.repository.TodoListRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TodoListService {
 
@@ -30,6 +33,22 @@ public class TodoListService {
         TodoItem todoItem = new TodoItem(descripcion);
         todoList.addItem(todoItem);
         this.repository.saveTodoList(todoList);
+        return todoList;
+    }
+
+    public TodoList cambiarEstadoItem(String listId, String itemId) {
+        TodoList todoList = this.repository.getTodoList(listId);
+        List<TodoItem> todoItems = todoList.getItems().stream()
+                .map(item -> {
+                    if (item.getId().equals(itemId))
+                        item.cambiarFinalizada();
+                    return item;
+                })
+                .collect(Collectors.toList());
+
+        todoList = new TodoList(todoList.getId(),todoItems);
+        this.repository.saveTodoList(todoList);
+
         return todoList;
     }
 }

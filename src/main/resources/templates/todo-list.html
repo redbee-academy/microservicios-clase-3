@@ -36,12 +36,17 @@
                                                 <div class="widget-content-left mr-2">
                                                 </div>
                                                 <div class="widget-content-left">
-                                                    <div class="widget-heading" th:text="${item.descripcion}">Call Sam For payments
+                                                    <div class="widget-heading" th:classappend="${item.isFinalizada() ? 'tarea-finalizada' : ''}" th:text="${item.descripcion}">Call Sam For payments
                                                     </div>
                                                 </div>
                                                 <div class="widget-content-right">
-                                                    <button class="border-0 btn-transition btn btn-outline-success"><i
+                                                    <form action="#" th:object="${itemAccion}" th:action="@{/todo-list/{listId}/items/{itemId}/cambiarEstado(listId=${todoList.id},itemId=${item.id})}" method="POST" th:method="POST">
+                                                        <input type="text" hidden th:value="${todoList.id}" th:name="listId" >
+                                                        <input type="text" hidden th:value="${item.id}" th:name="itemId" >
+                                                    <button type="submit" class="border-0 btn-transition btn btn-outline-success"><i
                                                             class="fa fa-check"></i></button>
+
+                                                    </form>
                                                     <button class="border-0 btn-transition btn btn-outline-danger"><i
                                                             class="fa fa-trash"></i></button>
                                                 </div>

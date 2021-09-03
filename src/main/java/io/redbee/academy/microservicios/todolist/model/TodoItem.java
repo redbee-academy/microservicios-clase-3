@@ -35,6 +35,10 @@ public class TodoItem {
         this.finalizada = finalizada;
     }
 
+    public void cambiarFinalizada() {
+        this.finalizada = !this.finalizada;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
