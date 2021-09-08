@@ -1,6 +1,12 @@
 
 # Getting Started
 
+Para correr la aplicación desde una terminal, sobre el directorio *root* de la misma ejecutar el siguiente comando
+
+`$ ./gradlew.sh bootRun`
+
+Luego desde un navegador, ingresar a http://localhost:8080/
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
