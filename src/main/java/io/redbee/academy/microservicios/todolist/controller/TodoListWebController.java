@@ -18,7 +18,7 @@ public class TodoListWebController {
         this.service = service;
     }
 
-    @GetMapping(value = {"/", "/todo-list/"})
+    @GetMapping(value = {"/", "/todo-list"})
     public String nuevaTodoList(Model model) {
         TodoList todoList = service.nuevaTodoList();
         model.addAttribute("todoList", todoList);
