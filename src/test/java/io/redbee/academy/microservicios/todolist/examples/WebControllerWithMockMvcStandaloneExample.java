@@ -59,7 +59,7 @@ class WebControllerWithMockMvcStandaloneExample {
         TodoList nuevaTodoList = (TodoList) mvcResult.getModelAndView().getModelMap().getAttribute("todoList");
 
 
-        mockMvc.perform(post("/todo-list/agregarItem")
+        mockMvc.perform(post("/agregarItem")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("listId", nuevaTodoList.getId())
                         .param("detalle", "mi item"))
