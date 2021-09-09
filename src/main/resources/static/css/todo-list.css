@@ -173,7 +173,7 @@ i {
 
 .tarea-finalizada {
     text-decoration:line-through;
-    color: green;
+    color: grey;
 }
 
 form {

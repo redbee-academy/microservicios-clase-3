@@ -25,7 +25,7 @@ public class TodoListWebController {
         return "todo-list";
     }
 
-    @PostMapping(value = "/todo-list/agregarItem",
+    @PostMapping(value = "/agregarItem",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String agregarItem(NuevoItemDto item, Model model) {
         TodoList todoList = service.agregarItem(item.getListId() , item.getDetalle());
@@ -33,7 +33,7 @@ public class TodoListWebController {
         return "todo-list";
     }
 
-    @PostMapping(value = "/todo-list/cambiarEstado",
+    @PostMapping(value = "/cambiarEstado",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String cambiarEstado(ItemAccionDto itemAccion, Model model) {
         TodoList todoList = service.cambiarEstadoItem(itemAccion.getListId(), itemAccion.getItemId());
