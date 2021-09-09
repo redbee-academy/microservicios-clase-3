@@ -14,11 +14,11 @@ public class TodoListWebController {
 
     private TodoListService service;
 
-    TodoListWebController(TodoListService service) {
+    public TodoListWebController(TodoListService service) {
         this.service = service;
     }
 
-    @GetMapping(value = {"/", "/todo-list"})
+    @GetMapping(value = {"/"})
     public String nuevaTodoList(Model model) {
         TodoList todoList = service.nuevaTodoList();
         model.addAttribute("todoList", todoList);
@@ -35,7 +35,7 @@ public class TodoListWebController {
 
     @PostMapping(value = "/todo-list/cambiarEstado",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String agregarItem(ItemAccionDto itemAccion, Model model) {
+    public String cambiarEstado(ItemAccionDto itemAccion, Model model) {
         TodoList todoList = service.cambiarEstadoItem(itemAccion.getListId(), itemAccion.getItemId());
         model.addAttribute("todoList", todoList);
         return "todo-list";

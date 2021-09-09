@@ -15,8 +15,8 @@ public class TodoList {
         this.items = new ArrayList();
     }
 
-    public TodoList(String uuid, List<TodoItem> items) {
-        this.id = uuid;
+    public TodoList(String id, List<TodoItem> items) {
+        this.id = id;
         this.items = items;
     }
 
