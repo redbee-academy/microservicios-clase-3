@@ -1,6 +1,5 @@
 package io.redbee.academy.microservicios.todolist.examples;
 
-import io.redbee.academy.microservicios.todolist.model.TodoItem;
 import io.redbee.academy.microservicios.todolist.model.TodoList;
 import io.redbee.academy.microservicios.todolist.repository.TodoListRepository;
 import io.redbee.academy.microservicios.todolist.service.TodoListService;
@@ -15,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -25,31 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest
 class WebControllerWithWebMvcTestAndTestConfigurationExample {
-
-    @TestConfiguration
-    static class MockConfiguration {
-
-        @Bean
-        public TodoListService todoListService(TodoListRepository repository) {
-            return new TodoListServiceImpl(repository);
-        }
-
-        @Bean
-        public TodoListRepository todoListRepository() {
-            return new TodoListRepository() {
-                @Override
-                public TodoList getTodoList(String id) {
-                    return new TodoList(id, new ArrayList<>());
-                }
-
-                @Override
-                public void saveTodoList(TodoList todoList) {
-
-                }
-
-            };
-        }
-    }
 
     @Autowired
     MockMvc mockMvc;
@@ -76,5 +49,30 @@ class WebControllerWithWebMvcTestAndTestConfigurationExample {
                 .andExpect(model().attribute("todoList", hasProperty("items", iterableWithSize(1))))
                 .andExpect(model().attribute("todoList", hasProperty("items", hasItems(hasProperty("descripcion", is("mi item"))))));
 
+    }
+
+    @TestConfiguration
+    static class MockConfiguration {
+
+        @Bean
+        public TodoListService todoListService(TodoListRepository repository) {
+            return new TodoListServiceImpl(repository);
+        }
+
+        @Bean
+        public TodoListRepository todoListRepository() {
+            return new TodoListRepository() {
+                @Override
+                public TodoList getTodoList(String id) {
+                    return new TodoList(id, new ArrayList<>());
+                }
+
+                @Override
+                public void saveTodoList(TodoList todoList) {
+
+                }
+
+            };
+        }
     }
 }

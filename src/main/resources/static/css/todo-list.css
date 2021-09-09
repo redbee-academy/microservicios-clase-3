@@ -155,6 +155,7 @@ i {
     background-color: #f50e0e;
     border-color: #f50e0e
 }
+
 .btn-primary {
     color: #fff;
     background-color: #3f6ad8;
@@ -172,7 +173,7 @@ i {
 }
 
 .tarea-finalizada {
-    text-decoration:line-through;
+    text-decoration: line-through;
     color: grey;
 }
 

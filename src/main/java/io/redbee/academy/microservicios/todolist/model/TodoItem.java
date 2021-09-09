@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class TodoItem {
 
-    private String id;
+    private final String id;
     private String descripcion;
     private Boolean finalizada;
 

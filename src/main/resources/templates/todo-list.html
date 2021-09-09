@@ -3,169 +3,180 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
 
     <title>redbee Academy - Todo list</title>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" th:href="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="../static/css/todo-list.css" th:href="@{/css/todo-list.css}">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+          media="screen" rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          media="screen" rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}"
+          type="text/css"/>
+    <link href="../static/css/todo-list.css" rel="stylesheet" th:href="@{/css/todo-list.css}">
 </head>
 
 <body>
-    <div class="row d-flex justify-content-center container">
-        <div class="col-md-8">
-            <div class="card-hover-shadow-2x mb-3 card">
-                <div class="card-header-tab card-header">
-                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i
-                            class="fa fa-tasks"></i>&nbsp;Task Lists
+<div class="row d-flex justify-content-center container">
+    <div class="col-md-8">
+        <div class="card-hover-shadow-2x mb-3 card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i
+                        class="fa fa-tasks"></i>&nbsp;Task Lists
+                </div>
+            </div>
+            <div class="scroll-area-sm">
+                <perfect-scrollbar class="ps-show-limits">
+                    <div class="ps ps--active-y" style="position: static;">
+                        <div class="ps-content">
+                            <ul class="list-group list-group-flush" th:object="${todoList}" th:remove="all-but-first">
+                                <li class="list-group-item" th:each="item : *{items}">
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-2">
+                                            </div>
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading"
+                                                     th:classappend="${item.isFinalizada() ? 'tarea-finalizada' : ''}"
+                                                     th:text="${item.descripcion}">Call Sam For payments
+                                                </div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <form action="#" method="POST" th:action="@{/cambiarEstado}"
+                                                      th:method="POST">
+                                                    <input hidden th:name="listId" th:value="${todoList.id}"
+                                                           type="text">
+                                                    <input hidden th:name="itemId" th:value="${item.id}" type="text">
+                                                    <button class="border-0 btn-transition btn btn-outline-success"
+                                                            type="submit">
+                                                        <i class="fa fa-check"></i></button>
+                                                </form>
+                                                <form action="#" method="POST" th:action="@{/eliminar}"
+                                                      th:method="POST">
+                                                    <input hidden th:name="listId" th:value="${todoList.id}"
+                                                           type="text">
+                                                    <input hidden th:name="itemId" th:value="${item.id}" type="text">
+                                                    <button class="border-0 btn-transition btn btn-outline-danger"><i
+                                                            class="fa fa-trash"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-2">
+                                            </div>
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">Make payment to Bluedart</div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <button class="border-0 btn-transition btn btn-outline-success"><i
+                                                        class="fa fa-check"></i></button>
+                                                <button class="border-0 btn-transition btn btn-outline-danger"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-2">
+                                            </div>
+                                            <div class="widget-content-left flex2">
+                                                <div class="widget-heading">Office rent</div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <button class="border-0 btn-transition btn btn-outline-success"><i
+                                                        class="fa fa-check"></i></button>
+                                                <button class="border-0 btn-transition btn btn-outline-danger"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-2">
+                                            </div>
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">Office grocery shopping</div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <button class="border-0 btn-transition btn btn-outline-success"><i
+                                                        class="fa fa-check"></i></button>
+                                                <button class="border-0 btn-transition btn btn-outline-danger"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="todo-indicator bg-success"></div>
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-2">
+                                            </div>
+                                            <div class="widget-content-left flex2">
+                                                <div class="widget-heading">Ask for Lunch to Clients</div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <button class="border-0 btn-transition btn btn-outline-success"><i
+                                                        class="fa fa-check"></i></button>
+                                                <button class="border-0 btn-transition btn btn-outline-danger"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="todo-indicator bg-success"></div>
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-2">
+                                            </div>
+                                            <div class="widget-content-left flex2">
+                                                <div class="widget-heading">Client Meeting at 11 AM</div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <button class="border-0 btn-transition btn btn-outline-success"><i
+                                                        class="fa fa-check"></i></button>
+                                                <button class="border-0 btn-transition btn btn-outline-danger"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="scroll-area-sm">
-                    <perfect-scrollbar class="ps-show-limits">
-                        <div style="position: static;" class="ps ps--active-y">
-                            <div class="ps-content">
-                                <ul class="list-group list-group-flush" th:remove="all-but-first" th:object="${todoList}">
-                                    <li class="list-group-item" th:each="item : *{items}">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-2">
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading" th:classappend="${item.isFinalizada() ? 'tarea-finalizada' : ''}" th:text="${item.descripcion}">Call Sam For payments
-                                                    </div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <form action="#" th:action="@{/cambiarEstado}" method="POST" th:method="POST">
-                                                        <input type="text" hidden th:value="${todoList.id}" th:name="listId" >
-                                                        <input type="text" hidden th:value="${item.id}" th:name="itemId" >
-                                                        <button type="submit" class="border-0 btn-transition btn btn-outline-success">
-                                                            <i class="fa fa-check"></i></button>
-                                                    </form>
-                                                    <form action="#" th:action="@{/eliminar}" method="POST" th:method="POST">
-                                                        <input type="text" hidden th:value="${todoList.id}" th:name="listId" >
-                                                        <input type="text" hidden th:value="${item.id}" th:name="itemId" >
-                                                        <button class="border-0 btn-transition btn btn-outline-danger"><i
-                                                                class="fa fa-trash"></i></button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-2">
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading">Make payment to Bluedart</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <button class="border-0 btn-transition btn btn-outline-success"><i
-                                                            class="fa fa-check"></i></button>
-                                                    <button class="border-0 btn-transition btn btn-outline-danger"><i
-                                                            class="fa fa-trash"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-2">
-                                                </div>
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">Office rent</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <button class="border-0 btn-transition btn btn-outline-success"><i
-                                                            class="fa fa-check"></i></button>
-                                                    <button class="border-0 btn-transition btn btn-outline-danger"><i
-                                                            class="fa fa-trash"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-2">
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading">Office grocery shopping</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <button class="border-0 btn-transition btn btn-outline-success"><i
-                                                            class="fa fa-check"></i></button>
-                                                    <button class="border-0 btn-transition btn btn-outline-danger"><i
-                                                            class="fa fa-trash"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="todo-indicator bg-success"></div>
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-2">
-                                                </div>
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">Ask for Lunch to Clients</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <button class="border-0 btn-transition btn btn-outline-success"><i
-                                                            class="fa fa-check"></i></button>
-                                                    <button class="border-0 btn-transition btn btn-outline-danger"><i
-                                                            class="fa fa-trash"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="todo-indicator bg-success"></div>
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-2">
-                                                </div>
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">Client Meeting at 11 AM</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <button class="border-0 btn-transition btn btn-outline-success"><i
-                                                            class="fa fa-check"></i></button>
-                                                    <button class="border-0 btn-transition btn btn-outline-danger"><i
-                                                            class="fa fa-trash"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </perfect-scrollbar>
-                </div>
+                </perfect-scrollbar>
+            </div>
 
-                <div class="d-block text-right card-footer">
-                    <div class="widget-content p-0">
-                        <div class="widget-content-wrapper">
-                            <form action="#" th:action="@{/agregarItem}" method="POST" th:method="POST">
-                                <div class="widget-content-left mr-2">
-                                    <input  type="text" hidden th:name="listId" th:value="${todoList.id}"></input>
-                                </div>
-                                <div class="widget-content-left flex2">
-                                    <input  type="text" placeholder="Nueva tarea" th:name="detalle"></input>
-                                    <input type="submit" class="btn btn-primary" value="Add Task"></input>
-                                </div>
-                            </form>
-                        </div>
+            <div class="d-block text-right card-footer">
+                <div class="widget-content p-0">
+                    <div class="widget-content-wrapper">
+                        <form action="#" method="POST" th:action="@{/agregarItem}" th:method="POST">
+                            <div class="widget-content-left mr-2">
+                                <input hidden th:name="listId" th:value="${todoList.id}" type="text"></input>
+                            </div>
+                            <div class="widget-content-left flex2">
+                                <input placeholder="Nueva tarea" th:name="detalle" type="text"></input>
+                                <input class="btn btn-primary" type="submit" value="Add Task"></input>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 </body>

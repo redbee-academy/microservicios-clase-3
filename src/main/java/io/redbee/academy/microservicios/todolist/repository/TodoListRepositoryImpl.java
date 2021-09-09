@@ -9,7 +9,7 @@ import java.util.Map;
 @Repository
 public class TodoListRepositoryImpl implements TodoListRepository {
 
-    private Map<String, TodoList> data;
+    private final Map<String, TodoList> data;
 
     TodoListRepositoryImpl() {
         this.data = new HashMap<>();

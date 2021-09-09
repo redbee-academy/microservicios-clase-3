@@ -6,13 +6,13 @@ import java.util.UUID;
 
 public class TodoList {
 
-    private String id;
-    private List<TodoItem> items;
+    private final String id;
+    private final List<TodoItem> items;
 
 
     public TodoList() {
         this.id = UUID.randomUUID().toString();
-        this.items = new ArrayList();
+        this.items = new ArrayList<>();
     }
 
     public TodoList(String id, List<TodoItem> items) {
@@ -30,7 +30,7 @@ public class TodoList {
 
 
     public List<TodoItem> getItems() {
-        return new ArrayList(this.items);
+        return new ArrayList<>(this.items);
     }
 
     public void addItem(TodoItem item) {

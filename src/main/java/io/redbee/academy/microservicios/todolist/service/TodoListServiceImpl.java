@@ -1,7 +1,7 @@
 package io.redbee.academy.microservicios.todolist.service;
 
-import io.redbee.academy.microservicios.todolist.model.TodoList;
 import io.redbee.academy.microservicios.todolist.model.TodoItem;
+import io.redbee.academy.microservicios.todolist.model.TodoList;
 import io.redbee.academy.microservicios.todolist.repository.TodoListRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Service
 public class TodoListServiceImpl implements TodoListService {
 
-    private TodoListRepository repository;
+    private final TodoListRepository repository;
 
     public TodoListServiceImpl(TodoListRepository repository) {
         this.repository = repository;
@@ -50,7 +50,7 @@ public class TodoListServiceImpl implements TodoListService {
                 })
                 .collect(Collectors.toList());
 
-        todoList = new TodoList(todoList.getId(),todoItems);
+        todoList = new TodoList(todoList.getId(), todoItems);
         this.repository.saveTodoList(todoList);
 
         return todoList;
@@ -63,7 +63,7 @@ public class TodoListServiceImpl implements TodoListService {
                 .filter(item -> item.getId().equals(itemId))
                 .collect(Collectors.toList());
 
-        todoList = new TodoList(todoList.getId(),todoItems);
+        todoList = new TodoList(todoList.getId(), todoItems);
         this.repository.saveTodoList(todoList);
 
         return todoList;
